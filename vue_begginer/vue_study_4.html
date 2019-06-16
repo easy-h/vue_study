@@ -4,11 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>컴포넌트 유효범위</title>
 </head>
 <body>
+    <div id="app">
+        <my-component1></my-component1>
+        <my-component2></my-component2>
+    </div>
     
+
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="js/app.js"></script>
+<script>
+    var cmp1 = {
+        template : '<div>첫번째 지역 컴포넌트 : {{cmp1Data}} </div>',
+        data : function() {
+            return {
+                cmp1Data : 100
+            }
+        }
+    };
+
+    var cmp2 = {
+        template : '<div>두번째 지역 컴포넌트 : {{cmp2Data}} </div>',
+        data : function() {
+            return {
+                //등록된 my-component2에서 1의 객체에 값을 직접 참조할 수 없음 (컴포넌트의 유효범위)
+                cmp2Data : cmp1.data.cmp1Data
+            }
+        }
+    };
+
+    new Vue({
+        el : '#app',
+        components : {
+            'my-component1' : cmp1,
+            'my-component2' : cmp2
+        }
+    });
+</script>
 </body>
 </html>
