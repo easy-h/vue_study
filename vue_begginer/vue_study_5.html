@@ -7,15 +7,28 @@
     <title>상/하 컴포넌트</title>
 </head>
 <body>
-    // 상&하위 컴포넌트란 부모, 자식의 관계 
-    //전역과 지역 컴포넌트 등록시 등록된 컴포넌트는 자식(하위)컴포넌트 하위 컴포넌트를 등록한 인스턴스는 상위(부모) 컴포넌트
-
-    <child-component v-bind:props 속성명 = "상위컴포넌트의 data 속성"></child-component>
+    <!-- 상&하위 컴포넌트란 부모, 자식의 관계 
+    전역과 지역 컴포넌트 등록시 등록된 컴포넌트는 자식(하위)컴포넌트 하위 컴포넌트를 등록한 인스턴스는 상위(부모) 컴포넌트
+    child-component v-bind:props 속성명 = "상위컴포넌트의 data 속성"
+    상위컴포넌트의 message를 v-bind로 하위 컴포넌트 propsdata에 전달하여 Vue.component template로 보여준다. -->
+    <div id="app">
+        <child-component v-bind:propsdata="message"></child-component>
+    </div>
     
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
+    //하위 컴포넌트
     Vue.component('child-component', {
-        props : ['props 속성명'],
+        props : ['propsdata'],
+        template : '<p>{{propsdata}}</p>'
+    });
+    
+    //상위 컴포넌트(인스턴스 등록)
+    new Vue({
+        el: '#app',
+        data: {
+            message : 'Hello Vue! passed from Parent Component'
+        }
     });
 </script>
 </body>
