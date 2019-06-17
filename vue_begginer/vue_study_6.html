@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>하/상 컴포넌트</title>
+</head>
+<body>
+    <!-- 하위 컴포넌트 -> 상위컴포넌트로 이벤트 전달 
+    v-on: 사용 -->
+    <div id="app">
+        <child-component v-on:show-log="printText"></child-component>
+    </div>
+    
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //하위 컴포넌트
+    Vue.component('child-component', {
+        template : '<button v-on:click="showLog">show</button>',
+        methods: {
+            showLog : function() {
+                this.$emit('show-log');
+            }
+        },
+    });
+    
+    //상위 컴포넌트(인스턴스 등록)
+    new Vue({
+        el: '#app',
+        data: {
+            message : 'Hello Vue! passed from Parent Component'
+        },
+        methods: {
+            printText : function () {
+                console.log("received an event");
+            }
+        }
+    });
+</script>
+</body>
+</html>
