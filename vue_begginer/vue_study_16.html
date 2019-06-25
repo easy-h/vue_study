@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>자바스크립트 표현식</title>
+</head>
+<body>
+    <div id="app" v-once>
+        <!-- 선언 불가 -->
+        <p>{{ let appID = '10'; }}</p>
+        <!-- 분기 불가 -->
+        <p>{{ if(appId) { return '100'; } }}</p>
+        <!-- 연산 x -->
+        <p>{{ message.split('').reverse().join('')}}</p>
+           <!-- 사용 가능 -->
+        <p>{{ reverseMessage }}</p>
+      </div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+  	message : 'Hello Vue'
+  },
+  computed : {
+  	reverseMessage : function() {
+  		return this.message.split('').reverse().join('');
+  	}
+  }
+});
+</script>
+</body>
+</html>

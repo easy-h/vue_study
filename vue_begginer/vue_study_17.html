@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>디렉티브 & 이벤트처리</title>
+</head>
+<body>
+    <div id="app">
+        <a v-if="flag">Do it Vue.js!</a>
+        <ul>
+            <li v-for="system in systems">{{ system }}</li>
+        </ul>
+        <p v-show='flag'>Do it Vue.js!</p>
+        <h5 v-bind:id="uid">뷰 입문</h5>
+        <button v-on:click="popAlert">경고 버튼</button>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+      flag : false,
+      systems : ['android', 'ios', 'window', 'mac'],
+      uid : 100
+  },
+  methods: {
+    //   popAlert : function(num) {
+    //       return alert(num + " 경고창 확인");
+    //   }   
+    //마우스 이벤트 객체 확인
+        popAlert : function(e) {
+            return console.log(e);
+        }   
+  }
+});
+</script>
+</body>
+</html>
