@@ -1,16 +1,16 @@
 <template>
     <section>
-        <ul>
+      <!-- 목록 애니메이션 태그 -->
+      <transition-group name="list" tag="ul">
             <!-- v-for에서 기본적으로 제공하는 변수 내부적 index 부여-->
-           <li v-for="(todoItem,index) in propsdata" :key="todoItem" class="shadow">
+          <li v-for="(todoItem,index) in propsdata" :key="todoItem" class="shadow">
                <i class="checkBtn fas fa-check" aria-hidden="true"></i>
                {{ todoItem }}
             <span class="removeBtn" type="button" @click="removeTodo(todoItem, index)">
                 <i class="far fa-trash-alt" aria-hidden="true"></i>    
             </span>   
-            </li>
-           
-        </ul>
+          </li>
+      </transition-group>
     </section>
 </template>
 
